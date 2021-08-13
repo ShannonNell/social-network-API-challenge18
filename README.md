@@ -21,6 +21,7 @@ ___
 
 ## Links
 * [Video Walkthrough]()
+* [Email Match Regex](https://emailregex.com/)
 
 ___
 
