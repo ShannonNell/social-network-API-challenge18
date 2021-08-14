@@ -18,8 +18,8 @@ const ReactionSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: Date.now,
-            get: createdAtVal => DateTime(createdAtVal).now().toLocaleString(DateTime.DATE_MED)
+            default: Date.now   
+            // getter here - see readme
         }
     },
     {
@@ -38,8 +38,8 @@ const ThoughtSchema = new Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now,
-        get: createdAtVal => DateTime(createdAtVal).now().toLocaleString(DateTime.DATE_MED)
+        default: Date.now
+        // getter here - see readme
     },
     username: {
         type: String,
