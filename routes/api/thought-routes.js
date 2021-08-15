@@ -26,12 +26,12 @@ router
     .route('/:userId')
     .post(addThought);
 
-// Add reaction to thought, DELETE, GET, UPDATE thought by id at /api/thoughts/:userId/:thoughtId
+// Add reaction to thought at /api/thoughts/:thoughtId/reactions
 router
-    .route('/:userId/:thoughtId/reaction')
+    .route('/:userId/thoughtId')
     .put(addReaction);
 
-// DELETE reply /api/thoughts/:thoughtId/:reactionId
+// DELETE reply /api/thoughts/:thoughtId/reactions/:reactionId
 router
     .route('/:userId/:thoughtId/:reactionId')
     .delete(removeReaction);

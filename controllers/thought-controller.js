@@ -98,10 +98,11 @@ const thoughtController = {
 
     // add a reaction to a thought
     addReaction({ params, body }, res) {
+        console.log(params);
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $push: { reactions: body } },
-            { new: true, runValidators: true }
+            { new: true }
         )
             .populate({ 
                 path: 'reactions',
