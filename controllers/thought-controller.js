@@ -98,13 +98,12 @@ const thoughtController = {
 
     // add a reaction to a thought
     addReaction({ params, body }, res) {
-        console.log(params);
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $push: { reactions: body } },
-            { new: true }
+            { new: true, runValidators: true }
         )
-            .populate({ 
+            .populate({
                 path: 'reactions',
                 select: '-__v'
             })
@@ -126,8 +125,14 @@ const thoughtController = {
             { $pull: { reactions: { reactionId: params.reactionId } } },
             { new: true }
         )
-            .then(dbUserData => res.json(dbUserData))
-            .catch(err => res.json(err));
+            .then(dbThoughtData => {
+                if (!dbThoughtData) {
+                    res.status(404).json({ message: 'No thought found with this id!' });
+                    return;
+                }
+                res.json(dbThoughtData);
+            })
+            .catch(err => res.status(400).json(err));
     }
 };
 
