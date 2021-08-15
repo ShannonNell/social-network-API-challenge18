@@ -8,6 +8,10 @@ const userController = {
                 path: 'thoughts',
                 select: '-__v'
             })
+            .populate({
+                path: 'friends',
+                select: '-__v'
+            })
             .select('-__v')
             .sort({ _id: -1 })
             .then(dbUserData => res.json(dbUserData))
@@ -22,6 +26,10 @@ const userController = {
         User.findOne({ _id: params.id })
             .populate({
                 path: 'thoughts',
+                select: '-__v'
+            })
+            .populate({
+                path: 'friends',
                 select: '-__v'
             })
             .select('-__v')
@@ -48,7 +56,7 @@ const userController = {
 
     // UPDATE user by id --> /api/users/:id
     updateUser({ params, body }, res) {
-        User.findOneAndUpdate({ _id: params.id }, body, { new: true })
+        User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidadots: true })
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'No user with this id was found' });
@@ -70,6 +78,50 @@ const userController = {
                 res.json(dbUserData);
             })
             .catch(err => res.status(400).json(err));
+    },
+
+    // ADD friend to friend's list
+    addFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.id },
+            { $push: { friends: params.friendId } },
+            { new: true, runValidators: true }
+        )
+        .populate({
+            path: 'friends',
+            select: '-__v'
+        })
+        .select('-__v')
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No user with this id was found' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.status(400).json(err));
+    }, 
+
+    // DELETE friend 
+    deleteFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.id },
+            { $pull: { friends: params.friendId } },
+            { new: true }
+        )
+        .populate({
+            path: 'friends',
+            select: '-__v'
+        })
+        .select('-__v')
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No user with this id was found' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.status(400).json(err));
     }
 };
 
