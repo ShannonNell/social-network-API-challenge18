@@ -9,25 +9,30 @@ ___
 * [Usage](#usage)
 * [Links](#links)
 * [Tools](#tools)
-* [Tests](#tests)
 * [Credits](#credits)
 * [License](#license)
 * [Challenge Guidelines](#challenge-guidelines)
 ___
 
 ## Installation
-
+Clone the repository from GitHub. Ensure your local device has MongoDB installed and then run `npm install i` to insall the dependencies. Dependencies in this project are: express, moment, and mongoose. Once that's done, run `npm start` to connect to the server. 
 ___
 
 ## Links
-* [Video Walkthrough]()
+### Video Walkthroughs
+* [User Routes Walkthrough](https://drive.google.com/file/d/17q868ckvLe1GOnfjKW3ZT1HNg4zxwmPv/view)
+* [Thought Routes Walkthrough](https://drive.google.com/file/d/108mpegQk5t6I-C2dOsXjZIqDLyPrEmRA/view)
+* [Friend Routes Walkthrough](https://drive.google.com/file/d/1DUyZYIjqc7j1lk3FPv-cPcAXPErbl44H/view)
+* [Reaction Routes Walkthrough](https://drive.google.com/file/d/1wVjOsNJavGz-pZVM5jp8XG-gqEZH1Oxt/view)
+### Other Links
 * [Email Match Regex](https://emailregex.com/)
 
 ___
 
 ## Usage
+This application is the database for a social networking application. API routes tested through Insomnia Core.
 
-![screenshotHere](/assets/images/)
+![screenshotHere](/assets/img/ch18-ss.png)
 ___
 
 
@@ -36,12 +41,7 @@ ___
 * Express.js
 * MongoDB
 * Mongoose
-<!-- * dotenv -->
-<!-- * bcrypt -->
-___
-
-## Tests
-
+* Moment
 ___
 
 ## Credits
